@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Center — Private Operations</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  DIRECTOR OF PERSONAL SERVICES — OPERATIONS PLATFORM        ║
+    ║  Luxury household operating system for UHNW principals       ║
+    ║                                                              ║
+    ║  HOW TO EDIT THIS FILE                                       ║
+    ║  ─────────────────────────────────────────────────────────  ║
+    ║  All placeholder text between <!-- EDIT --> tags             ║
+    ║  is designed to be replaced. Search for EDIT: in the        ║
+    ║  code to find every editable placeholder.                    ║
+    ║                                                              ║
+    ║  TO DEPLOY TO GITHUB PAGES:                                  ║
+    ║  1. Create a new GitHub repo                                 ║
+    ║  2. Upload index.html, css/, js/ folders                     ║
+    ║  3. Go to Settings → Pages → Deploy from main branch         ║
+    ║  4. Your site will be at username.github.io/repo-name        ║
+    ╚══════════════════════════════════════════════════════════════╝
+  -->
+</head>
+<body>
+
+<!-- ── Mobile sidebar overlay ── -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+<div class="app-shell">
+
+  <!-- ════════════════════════════════════════
+       SIDEBAR NAVIGATION
+       ════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-wordmark">
+      <span class="sidebar-wordmark-text">Private Operations</span>
+    </div>
+
+    <div class="sidebar-search">
+      <input type="text" class="search-input" placeholder="Search…" />
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <div class="nav-section">
+        <div class="nav-item active" data-section="section-dashboard" onclick="showSection('section-dashboard','Command Center')">
+          <span class="nav-icon">⌘</span> Command Center
+          <span class="nav-badge" id="badge-alerts">5</span>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Principal</div>
+        <div class="nav-item" data-section="section-profiles" onclick="showSection('section-profiles','Profiles &amp; Preferences','Principal')">
+          <span class="nav-icon">◎</span> Profiles &amp; Preferences
+        </div>
+        <div class="nav-item" data-section="section-planning" onclick="showSection('section-planning','Planning Suite','Principal')">
+          <span class="nav-icon">◫</span> Planning Suite
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Operations</div>
+        <div class="nav-item" data-section="section-estate" onclick="showSection('section-estate','Estate Operations','Operations')">
+          <span class="nav-icon">⌂</span> Estate Operations
+        </div>
+        <div class="nav-item" data-section="section-staffing" onclick="showSection('section-staffing','Household Staffing','Operations')">
+          <span class="nav-icon">◈</span> Household Staffing
+          <span class="nav-badge">2</span>
+        </div>
+        <div class="nav-item" data-section="section-sop" onclick="showSection('section-sop','SOP &amp; Knowledge Base','Operations')">
+          <span class="nav-icon">≡</span> SOP &amp; Knowledge Base
+        </div>
+        <div class="nav-item" data-section="section-projects" onclick="showSection('section-projects','Projects &amp; Construction','Operations')">
+          <span class="nav-icon">◧</span> Projects &amp; Construction
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Lifestyle</div>
+        <div class="nav-item" data-section="section-travel" onclick="showSection('section-travel','Travel &amp; Lifestyle','Lifestyle')">
+          <span class="nav-icon">◌</span> Travel &amp; Lifestyle
+        </div>
+        <div class="nav-item" data-section="section-events" onclick="showSection('section-events','Events &amp; Entertaining','Lifestyle')">
+          <span class="nav-icon">◉</span> Events &amp; Entertaining
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Administration</div>
+        <div class="nav-item" data-section="section-family-office" onclick="showSection('section-family-office','Family Office','Administration')">
+          <span class="nav-icon">◐</span> Family Office
+        </div>
+        <div class="nav-item" data-section="section-documents" onclick="showSection('section-documents','Documents Vault','Administration')">
+          <span class="nav-icon">◻</span> Documents Vault
+        </div>
+        <div class="nav-item" data-section="section-reports" onclick="showSection('section-reports','Reports &amp; Scorecards','Administration')">
+          <span class="nav-icon">◫</span> Reports &amp; Scorecards
+        </div>
+      </div>
+
+    </nav>
+
+  </aside>
+
+  <!-- ════════════════════════════════════════
+       MAIN AREA
+       ════════════════════════════════════════ -->
+  <div class="main-area">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
+      <div class="topbar-breadcrumb" id="breadcrumb">
+        <span class="bc-current">Command Center</span>
+      </div>
+      <div id="topbarDate" class="topbar-date"></div>
+      <div class="topbar-actions">
+        <button class="topbar-btn" onclick="openModal('modal-new-task')">+ Task</button>
+        <button class="topbar-btn" onclick="openModal('modal-new-request')">+ Request</button>
+        <button class="topbar-btn" onclick="window.print()">Print</button>
+      </div>
+    </header>
+
+    <!-- ════════════════════════════════════════
+         01. COMMAND CENTER
+         ════════════════════════════════════════ -->
+    <main class="page-content">
+
+    <div class="section-page active" id="section-dashboard">
+
+      <!-- Dashboard Header -->
+      <div class="dash-header">
+        <div class="dash-header-left">
+          <div class="dash-eyebrow" id="dash-day-display"></div>
+          <h1 class="dash-title">Command Center</h1>
+        </div>
+        <div class="dash-header-right">
+          <span class="dash-status-pill status-ok">
+            <span class="status-pip"></span>
+            All Systems Operational
+          </span>
+        </div>
+      </div>
+      <div class="dash-rule"></div>
+
+      <!-- KPI Strip -->
+      <div class="kpi-strip">
+        <div class="kpi-tile kpi-alert" onclick="showSection('section-planning','Planning Suite','Principal')" title="View pending approvals">
+          <div class="kpi-value" data-editable>3</div>
+          <div class="kpi-label">Pending Approvals</div>
+        </div>
+        <div class="kpi-divider"></div>
+        <div class="kpi-tile kpi-warn" onclick="showSection('section-staffing','Household Staffing','Operations')" title="View staffing">
+          <div class="kpi-value" data-editable>2</div>
+          <div class="kpi-label">Staffing Alerts</div>
+        </div>
+        <div class="kpi-divider"></div>
+        <div class="kpi-tile" onclick="showSection('section-planning','Planning Suite','Principal')" title="View tasks">
+          <div class="kpi-value" data-editable>8</div>
+          <div class="kpi-label">Open Tasks</div>
+        </div>
+        <div class="kpi-divider"></div>
+        <div class="kpi-tile kpi-ok" onclick="showSection('section-projects','Projects &amp; Construction','Operations')" title="View projects">
+          <div class="kpi-value" data-editable>4</div>
+          <div class="kpi-label">Active Projects</div>
+        </div>
+        <div class="kpi-divider"></div>
+        <div class="kpi-tile" onclick="showSection('section-events','Events &amp; Entertaining','Lifestyle')" title="View events">
+          <div class="kpi-value" data-editable>3</div>
+          <div class="kpi-label">Upcoming Events</div>
+        </div>
+        <div class="kpi-divider"></div>
+        <div class="kpi-tile kpi-ok" onclick="showSection('section-estate','Estate Operations','Operations')" title="View properties">
+          <div class="kpi-value" data-editable>94<span style="font-size:.875rem;font-weight:300;">%</span></div>
+          <div class="kpi-label">Property Readiness</div>
+        </div>
+      </div>
+
+      <!-- Alert Strip (dismissable) -->
+      <div class="alert-strip" id="alerts-area">
+        <div class="alert-line alert-line-warn">
+          <span class="alert-pip"></span>
+          <span data-editable>[Vendor Name] — service contract expires in 14 days</span>
+          <button class="alert-dismiss" onclick="this.closest('.alert-line').remove()">×</button>
+        </div>
+        <div class="alert-line alert-line-alert">
+          <span class="alert-pip"></span>
+          <span data-editable>[Position] role open — 2 candidates in pipeline, awaiting principal approval</span>
+          <button class="alert-dismiss" onclick="this.closest('.alert-line').remove()">×</button>
+        </div>
+      </div>
+
+      <!-- Main Dashboard Grid: 3 columns -->
+      <div class="dash-grid">
+
+        <!-- COL 1: Today's Schedule -->
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <span class="dash-panel-title">Today</span>
+            <button class="dash-panel-link" onclick="showSection('section-planning','Planning Suite','Principal')">Full calendar</button>
+          </div>
+
+          <div class="sched-item">
+            <div class="sched-time">7:00</div>
+            <div class="sched-marker sched-marker-now"></div>
+            <div class="sched-body">
+              <div class="sched-event" data-editable>Morning Briefing</div>
+              <div class="sched-detail" data-editable>Director check-in · Study</div>
+            </div>
+          </div>
+          <div class="sched-item">
+            <div class="sched-time">8:30</div>
+            <div class="sched-marker sched-marker-now"></div>
+            <div class="sched-body">
+              <div class="sched-event" data-editable>Wellness Session</div>
+              <div class="sched-detail" data-editable>Private trainer · Pool House Gym</div>
+            </div>
+          </div>
+          <div class="sched-item">
+            <div class="sched-time">10:00</div>
+            <div class="sched-marker"></div>
+            <div class="sched-body">
+              <div class="sched-event" data-editable>HVAC Service</div>
+              <div class="sched-detail" data-editable>East Wing · [Vendor Name]</div>
+            </div>
+          </div>
+          <div class="sched-item">
+            <div class="sched-time">12:30</div>
+            <div class="sched-marker"></div>
+            <div class="sched-body">
+              <div class="sched-event" data-editable>Private Lunch</div>
+              <div class="sched-detail" data-editable>Garden Terrace</div>
+            </div>
+          </div>
+          <div class="sched-item">
+            <div class="sched-time">15:00</div>
+            <div class="sched-marker"></div>
+            <div class="sched-body">
+              <div class="sched-event" data-editable>Advisor Call</div>
+              <div class="sched-detail" data-editable>[Advisor Name] · Quarterly review</div>
+            </div>
+          </div>
+          <div class="sched-item" style="border-bottom:none;">
+            <div class="sched-time">19:00</div>
+            <div class="sched-marker"></div>
+            <div class="sched-body">
+              <div class="sched-event" data-editable>Private Dinner</div>
+              <div class="sched-detail" data-editable>Family · Main Dining Room</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COL 2: Pending Approvals + Open Tasks -->
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <span class="dash-panel-title">Approvals</span>
+            <button class="dash-panel-link" onclick="showSection('section-planning','Planning Suite','Principal')">View all</button>
+          </div>
+
+          <div class="approval-row">
+            <div class="approval-row-body">
+              <div class="approval-row-title" data-editable>Aspen Charter — Feb 14–21</div>
+              <div class="approval-row-sub" data-editable>G650 · $48,000 · [Charter Company]</div>
+            </div>
+            <div class="approval-row-actions">
+              <span class="mini-tag mini-tag-alert">Urgent</span>
+              <button class="approve-btn" onclick="approveItem(this)">Approve</button>
+            </div>
+          </div>
+
+          <div class="approval-row">
+            <div class="approval-row-body">
+              <div class="approval-row-title" data-editable>North Garden Redesign</div>
+              <div class="approval-row-sub" data-editable>$125,000 · [Landscape Firm]</div>
+            </div>
+            <div class="approval-row-actions">
+              <span class="mini-tag mini-tag-week">This week</span>
+              <button class="approve-btn" onclick="approveItem(this)">Approve</button>
+            </div>
+          </div>
+
+          <div class="approval-row" style="border-bottom:none;margin-bottom:0;">
+            <div class="approval-row-body">
+              <div class="approval-row-title" data-editable>Executive Chef — Final Hire</div>
+              <div class="approval-row-sub" data-editable>[Candidate Name] · Start Feb 1</div>
+            </div>
+            <div class="approval-row-actions">
+              <span class="mini-tag mini-tag-neutral">Pending</span>
+              <button class="approve-btn" onclick="approveItem(this)">Approve</button>
+            </div>
+          </div>
+
+          <div class="dash-sub-rule"></div>
+
+          <div class="dash-panel-header" style="margin-top:0;">
+            <span class="dash-panel-title">Open Tasks</span>
+            <span class="dash-count">8</span>
+          </div>
+
+          <div class="task-row">
+            <div class="task-row-dot task-urgent"></div>
+            <div class="task-row-body">
+              <div class="task-row-title" data-editable>Confirm Aspen villa staffing</div>
+              <div class="task-row-due" data-editable>Due [Date]</div>
+            </div>
+          </div>
+          <div class="task-row">
+            <div class="task-row-dot task-week"></div>
+            <div class="task-row-body">
+              <div class="task-row-title" data-editable>Renew service contract — [Vendor]</div>
+              <div class="task-row-due" data-editable>Due [Date]</div>
+            </div>
+          </div>
+          <div class="task-row">
+            <div class="task-row-dot task-upcoming"></div>
+            <div class="task-row-body">
+              <div class="task-row-title" data-editable>Order wardrobe — Aspen packing list</div>
+              <div class="task-row-due" data-editable>Due [Date]</div>
+            </div>
+          </div>
+          <div class="task-row" style="border-bottom:none;">
+            <div class="task-row-dot task-upcoming"></div>
+            <div class="task-row-body">
+              <div class="task-row-title" data-editable>Schedule annual insurance review</div>
+              <div class="task-row-due" data-editable>Due [Date]</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COL 3: Active Projects + Property Readiness -->
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <span class="dash-panel-title">Active Projects</span>
+            <button class="dash-panel-link" onclick="showSection('section-projects','Projects &amp; Construction','Operations')">View all</button>
+          </div>
+
+          <div class="project-row">
+            <div class="project-row-body">
+              <div class="project-row-title" data-editable>Pool House Renovation</div>
+              <div class="project-row-sub" data-editable>Est. completion [Date]</div>
+            </div>
+            <div class="project-row-right">
+              <div class="project-pct" data-editable>68%</div>
+              <div class="mini-progress"><div class="mini-progress-fill" style="width:68%;background:var(--success);"></div></div>
+            </div>
+          </div>
+
+          <div class="project-row">
+            <div class="project-row-body">
+              <div class="project-row-title" data-editable>Smart Home Integration</div>
+              <div class="project-row-sub" data-editable>[Contractor] · Slight delay flagged</div>
+            </div>
+            <div class="project-row-right">
+              <div class="project-pct" data-editable>40%</div>
+              <div class="mini-progress"><div class="mini-progress-fill" style="width:40%;background:var(--warn);"></div></div>
+            </div>
+          </div>
+
+          <div class="project-row" style="border-bottom:none;margin-bottom:0;">
+            <div class="project-row-body">
+              <div class="project-row-title" data-editable>North Garden Redesign</div>
+              <div class="project-row-sub" data-editable>Awaiting approval</div>
+            </div>
+            <div class="project-row-right">
+              <span class="mini-tag mini-tag-neutral" style="font-size:.625rem;">Pending</span>
+            </div>
+          </div>
+
+          <div class="dash-sub-rule"></div>
+
+          <div class="dash-panel-header" style="margin-top:0;">
+            <span class="dash-panel-title">Property Readiness</span>
+            <button class="dash-panel-link" onclick="showSection('section-estate','Estate Operations','Operations')">Details</button>
+          </div>
+
+          <div class="readiness-row">
+            <span class="readiness-label" data-editable>[Primary Residence]</span>
+            <div class="mini-progress" style="flex:1;margin:0 .875rem;"><div class="mini-progress-fill" style="width:97%;background:var(--success);"></div></div>
+            <span class="readiness-pct readiness-ok" data-editable>97%</span>
+          </div>
+          <div class="readiness-row">
+            <span class="readiness-label" data-editable>[Aspen Residence]</span>
+            <div class="mini-progress" style="flex:1;margin:0 .875rem;"><div class="mini-progress-fill" style="width:82%;background:var(--warn);"></div></div>
+            <span class="readiness-pct readiness-warn" data-editable>82%</span>
+          </div>
+          <div class="readiness-row">
+            <span class="readiness-label" data-editable>[Beach House]</span>
+            <div class="mini-progress" style="flex:1;margin:0 .875rem;"><div class="mini-progress-fill" style="width:91%;background:var(--success);"></div></div>
+            <span class="readiness-pct readiness-ok" data-editable>91%</span>
+          </div>
+          <div class="readiness-row" style="border-bottom:none;">
+            <span class="readiness-label" data-editable>[NYC Apartment]</span>
+            <div class="mini-progress" style="flex:1;margin:0 .875rem;"><div class="mini-progress-fill" style="width:95%;background:var(--success);"></div></div>
+            <span class="readiness-pct readiness-ok" data-editable>95%</span>
+          </div>
+        </div>
+
+      </div><!-- /dash-grid -->
+
+      <!-- Daily Brief row: Upcoming Events + Budget -->
+      <div class="dash-grid-2" style="margin-top:1.5rem;">
+
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <span class="dash-panel-title">Upcoming</span>
+            <button class="dash-panel-link" onclick="showSection('section-events','Events &amp; Entertaining','Lifestyle')">All events</button>
+          </div>
+          <div class="event-row">
+            <div class="event-row-date">
+              <div class="event-day" data-editable>[D]</div>
+              <div class="event-month" data-editable>[MON]</div>
+            </div>
+            <div class="event-row-body">
+              <div class="event-row-title" data-editable>Private Dinner — [Guest Name]</div>
+              <div class="event-row-sub" data-editable>20 guests · Main Residence · 7:00 PM</div>
+            </div>
+            <span class="mini-tag mini-tag-alert">14 days</span>
+          </div>
+          <div class="event-row">
+            <div class="event-row-date">
+              <div class="event-day" data-editable>[D]</div>
+              <div class="event-month" data-editable>[MON]</div>
+            </div>
+            <div class="event-row-body">
+              <div class="event-row-title" data-editable>Holiday Reception</div>
+              <div class="event-row-sub" data-editable>60 guests · Ballroom</div>
+            </div>
+            <span class="mini-tag mini-tag-neutral">6 wks</span>
+          </div>
+          <div class="event-row" style="border-bottom:none;">
+            <div class="event-row-date">
+              <div class="event-day" data-editable>[D]</div>
+              <div class="event-month" data-editable>[MON]</div>
+            </div>
+            <div class="event-row-body">
+              <div class="event-row-title" data-editable>Family Weekend — Aspen</div>
+              <div class="event-row-sub" data-editable>Travel party of [N]</div>
+            </div>
+            <span class="mini-tag mini-tag-neutral">8 wks</span>
+          </div>
+        </div>
+
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <span class="dash-panel-title">Budget</span>
+            <!-- EDIT: fiscal period -->
+            <span class="dash-panel-meta" data-editable>Q[N] · [Year]</span>
+          </div>
+          <div class="budget-line">
+            <div class="budget-line-top">
+              <span class="budget-line-name" data-editable>Household Operations</span>
+              <span class="budget-line-figure" data-editable>$[X]K / $[Y]K</span>
+            </div>
+            <div class="mini-progress"><div class="mini-progress-fill" style="width:72%;background:var(--success);"></div></div>
+          </div>
+          <div class="budget-line">
+            <div class="budget-line-top">
+              <span class="budget-line-name" data-editable>Travel &amp; Lifestyle</span>
+              <span class="budget-line-figure" style="color:var(--warn);" data-editable>$[X]K / $[Y]K</span>
+            </div>
+            <div class="mini-progress"><div class="mini-progress-fill" style="width:88%;background:var(--warn);"></div></div>
+          </div>
+          <div class="budget-line">
+            <div class="budget-line-top">
+              <span class="budget-line-name" data-editable>Projects &amp; Construction</span>
+              <span class="budget-line-figure" data-editable>$[X]K / $[Y]K</span>
+            </div>
+            <div class="mini-progress"><div class="mini-progress-fill" style="width:45%;"></div></div>
+          </div>
+          <div class="budget-line" style="border-bottom:none;padding-bottom:0;">
+            <div class="budget-line-top">
+              <span class="budget-line-name" data-editable>Events &amp; Entertaining</span>
+              <span class="budget-line-figure" data-editable>$[X]K / $[Y]K</span>
+            </div>
+            <div class="mini-progress"><div class="mini-progress-fill" style="width:60%;"></div></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /section-dashboard -->
+
+
+    <!-- ════════════════════════════════════════
+         02. PRINCIPAL PROFILES
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-profiles">
+      <div class="section-label">Principal</div>
+      <h1 class="page-title">Profiles &amp; Preferences</h1>
+      <p class="page-subtitle">Private profiles, routines, and preferences for the principal family. Double-click any field to edit.</p>
+
+      <!-- Principal Profile Card -->
+      <div class="profile-card">
+        <div class="profile-avatar" data-editable>P</div>
+        <div class="profile-body">
+          <!-- EDIT: principal name and role -->
+          <h3 data-editable>[Principal Name]</h3>
+          <div class="profile-role" data-editable>Primary Principal · [Residence City]</div>
+          <div class="profile-tags">
+            <span class="tag tag-active tag-dot">Primary</span>
+            <span class="tag tag-upcoming">High Privacy</span>
+            <span class="tag tag-upcoming">Domestic + International</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:1.5rem;">
+        <!-- Communication & Daily Routine -->
+        <div class="panel open">
+          <div class="panel-header" onclick="togglePanel(this)">
+            <div class="panel-header-left">
+              <span>◎</span>
+              <div>
+                <div class="panel-header-title">Communication Style &amp; Daily Routine</div>
+                <div class="panel-header-sub">Preferred contact, timing, and daily rhythms</div>
+              </div>
+            </div>
+            <span class="panel-toggle">▾</span>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="form-label">Preferred Contact Method</div>
+              <div class="form-input" style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>Text message for non-urgent; voice call for urgent matters only. No email for personal requests.</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Do-Not-Disturb Hours</div>
+              <div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>9:00 PM – 7:30 AM · Weekends: After 10:00 PM unless emergency</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Morning Routine</div>
+              <div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>6:45 AM: Wake. Coffee in Study. 7:30 AM: Workout. 9:00 AM: Begin meetings.</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Decision-Making Style</div>
+              <div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>Present 2–3 curated options only. No more than 3 decisions presented in one sitting. Prefers brief summaries with a recommendation.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Food & Dining Preferences -->
+        <div class="panel open">
+          <div class="panel-header" onclick="togglePanel(this)">
+            <div class="panel-header-left">
+              <span>◌</span>
+              <div>
+                <div class="panel-header-title">Food &amp; Beverage Preferences</div>
+                <div class="panel-header-sub">Dietary, allergies, favorites</div>
+              </div>
+            </div>
+            <span class="panel-toggle">▾</span>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <div class="form-label">Dietary Restrictions / Allergies</div>
+              <div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>No shellfish (allergy). Gluten-free preferred. No processed sugar after 6 PM.</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Favorite Cuisines</div>
+              <div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>Japanese omakase, French bistro, California farm-to-table.</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Preferred Breakfast</div>
+              <div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>Green juice, soft-boiled eggs, sourdough toast (gluten-free), black coffee — Lavazza.</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Wine / Spirits Preferences</div>
+              <div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>Burgundy (Pinot Noir). Single malt Scotch. Tequila (blancos only). No cocktails unless requested.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:1.5rem;">
+        <!-- Travel Preferences -->
+        <div class="panel">
+          <div class="panel-header" onclick="togglePanel(this)">
+            <div class="panel-header-left"><span>✈</span><div><div class="panel-header-title">Travel Preferences</div></div></div>
+            <span class="panel-toggle">▾</span>
+          </div>
+          <div class="panel-body">
+            <div class="form-group"><div class="form-label">Aircraft Preference</div><div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>G650 or Global 7500 only. No charter under Gulfstream IV class.</div></div>
+            <div class="form-group"><div class="form-label">Hotel Preference</div><div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>Aman properties preferred. Four Seasons acceptable. Suite or villa only, never standard room.</div></div>
+            <div class="form-group"><div class="form-label">Packing Preferences</div><div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>Wardrobe packed 48 hours in advance. Toiletry bag stocked by housekeeper. Monogrammed luggage only.</div></div>
+          </div>
+        </div>
+        <!-- Wellness Preferences -->
+        <div class="panel">
+          <div class="panel-header" onclick="togglePanel(this)">
+            <div class="panel-header-left"><span>◐</span><div><div class="panel-header-title">Wellness &amp; Fitness Preferences</div></div></div>
+            <span class="panel-toggle">▾</span>
+          </div>
+          <div class="panel-body">
+            <div class="form-group"><div class="form-label">Workout Schedule</div><div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>Mon/Wed/Fri: Strength with trainer. Tue/Thu: Morning swim or yoga. Sat: Tennis if available.</div></div>
+            <div class="form-group"><div class="form-label">Medical Contacts</div><div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>Primary Physician: Dr. [Name] · [Phone]. Cardiologist: Dr. [Name]. Preferred Hospital: [Hospital Name].</div></div>
+            <div class="form-group"><div class="form-label">Medications / Supplements</div><div style="padding:.5rem .75rem;background:var(--cream);border-radius:4px;font-size:.875rem;" data-editable>See secure medical file — Director of Personal Services has access only.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIP Contacts -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">VIP Contacts</div>
+          <button class="btn btn-sm" onclick="openModal('modal-new-contact')">+ Add Contact</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Role</th><th>Contact</th><th>Notes</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>[Name]</td><td data-editable>Personal Attorney</td><td data-editable>[Phone / Email]</td><td data-editable>Primary legal counsel</td><td><span class="tag tag-urgent">VIP</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Private Physician</td><td data-editable>[Phone / Email]</td><td data-editable>Direct line, 24/7 availability</td><td><span class="tag tag-urgent">VIP</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Chief Financial Advisor</td><td data-editable>[Phone / Email]</td><td data-editable>Family office liaison</td><td><span class="tag tag-active">Key</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Head of Security</td><td data-editable>[Phone / Email]</td><td data-editable>24/7 emergency contact</td><td><span class="tag tag-urgent">VIP</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Private Pilot</td><td data-editable>[Phone / Email]</td><td data-editable>Lead pilot, G650</td><td><span class="tag tag-active">Key</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /section-profiles -->
+
+
+    <!-- ════════════════════════════════════════
+         03. PLANNING SUITE
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-planning">
+      <div class="section-label">Principal</div>
+      <h1 class="page-title">Planning Suite</h1>
+      <p class="page-subtitle">Curated options, schedules, and approvals. Designed to reduce decision fatigue.</p>
+
+      <!-- Pending Approvals -->
+      <div class="section-label">Awaiting Principal Action</div>
+      <div style="display:flex;flex-direction:column;gap:.875rem;margin-bottom:2rem;">
+
+        <div class="approval-card">
+          <div class="approval-card-icon">✈</div>
+          <div class="approval-card-body">
+            <div class="approval-card-title" data-editable>Aspen Charter Flight — February 14–21</div>
+            <div class="approval-card-detail" data-editable>Gulfstream G650 · Depart [Airport] 9:00 AM · 8 passengers · $48,000 · [Charter Company]. Ground transportation and villa staff confirmed. Packing lists prepared.</div>
+            <div class="approval-card-actions">
+              <button class="btn btn-sm btn-approve" onclick="approveItem(this)">✓ Approve</button>
+              <button class="btn btn-sm btn-danger" onclick="declineItem(this)">Decline</button>
+              <button class="btn btn-sm btn-ghost" onclick="delegateItem(this)">Delegate</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="approval-card">
+          <div class="approval-card-icon">🏡</div>
+          <div class="approval-card-body">
+            <div class="approval-card-title" data-editable>North Garden Redesign — [Landscape Firm]</div>
+            <div class="approval-card-detail" data-editable>Full redesign proposal including new gravel pathways, native plantings, and irrigation upgrade. Total: $125,000. Timeline: 8 weeks. Three design boards attached for review.</div>
+            <div class="approval-card-actions">
+              <button class="btn btn-sm btn-approve" onclick="approveItem(this)">✓ Approve</button>
+              <button class="btn btn-sm btn-danger" onclick="declineItem(this)">Decline</button>
+              <button class="btn btn-sm btn-ghost" onclick="delegateItem(this)">Delegate</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="approval-card">
+          <div class="approval-card-icon">👤</div>
+          <div class="approval-card-body">
+            <div class="approval-card-title" data-editable>Executive Chef Hire — [Candidate Name]</div>
+            <div class="approval-card-detail" data-editable>Final candidate following 3-round interview process. [Background]. References cleared. Proposed start: February 1. Compensation package attached for review.</div>
+            <div class="approval-card-actions">
+              <button class="btn btn-sm btn-approve" onclick="approveItem(this)">✓ Approve</button>
+              <button class="btn btn-sm btn-danger" onclick="declineItem(this)">Decline</button>
+              <button class="btn btn-sm btn-ghost" onclick="delegateItem(this)">Request More Info</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Option Cards: Travel -->
+      <div class="section-label">Option Selection — Travel: Aspen February</div>
+      <p style="font-size:.8125rem;color:var(--stone);margin-bottom:1rem;">Select preferred accommodations. Director will confirm upon selection.</p>
+      <div class="option-cards" style="margin-bottom:2rem;">
+        <div class="option-card" onclick="selectOption(this)">
+          <div class="option-check"></div>
+          <div class="option-label">Option A · Recommended</div>
+          <div class="option-title" data-editable>Aman Resorts — Private Villa</div>
+          <div class="option-detail" data-editable>4-bedroom villa, ski-in/ski-out. Dedicated butler. Private chef available. Preferred property. Excellent availability.</div>
+          <div class="option-price" data-editable>$28,000 / night · 7 nights</div>
+        </div>
+        <div class="option-card" onclick="selectOption(this)">
+          <div class="option-check"></div>
+          <div class="option-label">Option B</div>
+          <div class="option-title" data-editable>Little Nell — Penthouse Suite</div>
+          <div class="option-detail" data-editable>3-bedroom penthouse, mountain views. Full hotel services. Preferred restaurant downstairs. Walking distance to mountain.</div>
+          <div class="option-price" data-editable>$18,000 / night · 7 nights</div>
+        </div>
+        <div class="option-card" onclick="selectOption(this)">
+          <div class="option-check"></div>
+          <div class="option-label">Option C</div>
+          <div class="option-title" data-editable>Private Rental — [Address]</div>
+          <div class="option-detail" data-editable>6-bedroom estate, full staff included. Private pool, home theater, game room. Maximum privacy.</div>
+          <div class="option-price" data-editable>$35,000 / night · 7 nights</div>
+        </div>
+      </div>
+
+      <!-- Weekly Calendar -->
+      <div class="section-label">This Week</div>
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header">
+          <div class="card-title">Weekly Schedule</div>
+          <!-- EDIT: week dates -->
+          <div class="card-meta" data-editable>Week of [Month Day – Day], [Year]</div>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Day</th><th>Morning</th><th>Afternoon</th><th>Evening</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight:600">Monday</td><td data-editable>Workout · Trainer</td><td data-editable>Meetings</td><td data-editable>Family dinner</td><td data-editable></td></tr>
+            <tr><td style="font-weight:600">Tuesday</td><td data-editable>Swim</td><td data-editable>Advisor call</td><td data-editable>Private evening</td><td data-editable></td></tr>
+            <tr><td style="font-weight:600">Wednesday</td><td data-editable>Workout · Trainer</td><td data-editable>HVAC service on-site</td><td data-editable>Dinner — [Restaurant]</td><td data-editable>Chef on duty</td></tr>
+            <tr><td style="font-weight:600">Thursday</td><td data-editable>Yoga</td><td data-editable>Travel prep begins</td><td data-editable>[Guest] dinner</td><td data-editable>Guest arrival 4 PM</td></tr>
+            <tr><td style="font-weight:600">Friday</td><td data-editable>Workout · Trainer</td><td data-editable>Departure prep</td><td data-editable>Private</td><td data-editable></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Priority Tasks for Principal -->
+      <div class="section-label">Principal Priorities — This Period</div>
+      <div class="item-list">
+        <div class="item-row"><div class="item-row-icon">⭑</div><div class="item-row-body"><div class="item-row-title" data-editable>Review &amp; approve Aspen travel plan</div><div class="item-row-sub" data-editable>Director has prepared full brief</div></div><span class="tag tag-urgent tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Urgent</span></div>
+        <div class="item-row"><div class="item-row-icon">⭑</div><div class="item-row-body"><div class="item-row-title" data-editable>Review Q1 household budget</div><div class="item-row-sub" data-editable>Prepared by Director · 10 min review</div></div><span class="tag tag-thisweek tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">This Week</span></div>
+        <div class="item-row"><div class="item-row-icon">⭑</div><div class="item-row-body"><div class="item-row-title" data-editable>Confirm holiday reception guest list</div><div class="item-row-sub" data-editable>Final additions due to caterer by [Date]</div></div><span class="tag tag-upcoming tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Upcoming</span></div>
+        <div class="item-row"><div class="item-row-icon">⭑</div><div class="item-row-body"><div class="item-row-title" data-editable>Review pool house renovation progress photos</div><div class="item-row-sub" data-editable>Architect walkthrough available</div></div><span class="tag tag-upcoming tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Upcoming</span></div>
+      </div>
+
+    </div><!-- /section-planning -->
+
+
+    <!-- ════════════════════════════════════════
+         04. ESTATE OPERATIONS
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-estate">
+      <div class="section-label">Operations</div>
+      <h1 class="page-title">Estate Operations</h1>
+      <p class="page-subtitle">Property profiles, maintenance, asset inventory, and readiness scorecards.</p>
+
+      <div class="grid-3" style="margin-bottom:1.5rem;">
+        <!-- Property Cards -->
+        <div class="card">
+          <div class="card-header"><div class="card-title" data-editable>[Primary Residence]</div><span class="tag tag-active tag-dot">Active</span></div>
+          <div style="font-size:.8125rem;color:var(--stone);line-height:1.7;" data-editable>[City, State] · [sq ft] sq ft · [N] bedrooms · Built [Year]</div>
+          <div class="progress-bar-wrap" style="margin:.875rem 0 .375rem;"><div class="progress-bar ok" style="width:97%"></div></div>
+          <div style="font-size:.75rem;color:var(--stone);">Readiness: 97% · 1 open item</div>
+          <div style="margin-top:1rem;display:flex;gap:.5rem;">
+            <button class="btn btn-sm" onclick="openModal('modal-property-detail')">View Detail</button>
+            <button class="btn btn-sm">Maintenance Log</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title" data-editable>[Aspen Residence]</div><span class="tag tag-pending tag-dot">Seasonal Prep</span></div>
+          <div style="font-size:.8125rem;color:var(--stone);line-height:1.7;" data-editable>Aspen, CO · [sq ft] sq ft · [N] bedrooms · Ski-in / Ski-out</div>
+          <div class="progress-bar-wrap" style="margin:.875rem 0 .375rem;"><div class="progress-bar warn" style="width:82%"></div></div>
+          <div style="font-size:.75rem;color:var(--stone);">Readiness: 82% · 4 items pending</div>
+          <div style="margin-top:1rem;display:flex;gap:.5rem;">
+            <button class="btn btn-sm" onclick="openModal('modal-property-detail')">View Detail</button>
+            <button class="btn btn-sm">Maintenance Log</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title" data-editable>[Beach House]</div><span class="tag tag-active tag-dot">Active</span></div>
+          <div style="font-size:.8125rem;color:var(--stone);line-height:1.7;" data-editable>[Location] · [sq ft] sq ft · [N] bedrooms · Ocean-front</div>
+          <div class="progress-bar-wrap" style="margin:.875rem 0 .375rem;"><div class="progress-bar ok" style="width:91%"></div></div>
+          <div style="font-size:.75rem;color:var(--stone);">Readiness: 91% · 2 open items</div>
+          <div style="margin-top:1rem;display:flex;gap:.5rem;">
+            <button class="btn btn-sm" onclick="openModal('modal-property-detail')">View Detail</button>
+            <button class="btn btn-sm">Maintenance Log</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maintenance Schedule -->
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header"><div class="card-title">Maintenance Schedule</div><button class="btn btn-sm btn-primary" onclick="openModal('modal-new-task')">+ Add Service</button></div>
+        <table class="data-table">
+          <thead><tr><th>Service</th><th>Property</th><th>Vendor</th><th>Last Service</th><th>Next Due</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>HVAC Service</td><td data-editable>[Primary Residence]</td><td data-editable>[Vendor Name]</td><td data-editable>[Date]</td><td data-editable>[Date]</td><td><span class="tag tag-urgent tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Urgent</span></td></tr>
+            <tr><td data-editable>Pool Maintenance</td><td data-editable>[Primary Residence]</td><td data-editable>[Vendor Name]</td><td data-editable>[Date]</td><td data-editable>Weekly</td><td><span class="tag tag-active tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Active</span></td></tr>
+            <tr><td data-editable>Generator Test</td><td data-editable>[All Properties]</td><td data-editable>In-house</td><td data-editable>[Date]</td><td data-editable>[Date]</td><td><span class="tag tag-upcoming tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Upcoming</span></td></tr>
+            <tr><td data-editable>Security System Audit</td><td data-editable>[All Properties]</td><td data-editable>[Vendor Name]</td><td data-editable>[Date]</td><td data-editable>[Date]</td><td><span class="tag tag-upcoming tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Upcoming</span></td></tr>
+            <tr><td data-editable>Elevator Inspection</td><td data-editable>[Primary Residence]</td><td data-editable>[Vendor Name]</td><td data-editable>[Date]</td><td data-editable>[Date]</td><td><span class="tag tag-complete tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Complete</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Vehicle Fleet -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">Vehicle Fleet</div></div>
+        <table class="data-table">
+          <thead><tr><th>Vehicle</th><th>Year</th><th>Location</th><th>Driver</th><th>Insurance</th><th>Next Service</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>[Make/Model]</td><td data-editable>[Year]</td><td data-editable>[Primary Residence]</td><td data-editable>[Driver Name]</td><td data-editable>Current · [Carrier]</td><td data-editable>[Date]</td><td><span class="tag tag-active tag-dot">Ready</span></td></tr>
+            <tr><td data-editable>[Make/Model] SUV</td><td data-editable>[Year]</td><td data-editable>[Primary Residence]</td><td data-editable>[Driver Name]</td><td data-editable>Current · [Carrier]</td><td data-editable>[Date]</td><td><span class="tag tag-active tag-dot">Ready</span></td></tr>
+            <tr><td data-editable>[Make/Model]</td><td data-editable>[Year]</td><td data-editable>[Aspen Residence]</td><td data-editable>N/A</td><td data-editable>Current · [Carrier]</td><td data-editable>[Date]</td><td><span class="tag tag-pending tag-dot">Seasonal Storage</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /section-estate -->
+
+
+    <!-- ════════════════════════════════════════
+         05. HOUSEHOLD STAFFING
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-staffing">
+      <div class="section-label">Operations</div>
+      <h1 class="page-title">Household Staffing</h1>
+      <p class="page-subtitle">Org chart, staff directory, schedules, and HR pipeline.</p>
+
+      <!-- Org Chart -->
+      <div class="section-label">Reporting Structure</div>
+      <div class="card" style="margin-bottom:1.5rem;overflow-x:auto;">
+        <div style="min-width:600px;padding:1rem 0;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+            <!-- Principal -->
+            <div class="org-node">
+              <div class="org-node-box" style="border-color:var(--accent);border-width:2px;">
+                <div class="org-node-name" data-editable>[Principal Name]</div>
+                <div class="org-node-title">Principal</div>
+              </div>
+              <div style="width:1px;height:24px;background:var(--taupe);"></div>
+            </div>
+            <!-- Director -->
+            <div class="org-node">
+              <div class="org-node-box" style="background:var(--sand);">
+                <div class="org-node-name" data-editable>[Director Name]</div>
+                <div class="org-node-title">Director of Personal Services</div>
+              </div>
+              <div style="width:1px;height:24px;background:var(--taupe);"></div>
+            </div>
+            <!-- Row of direct reports -->
+            <div style="display:flex;gap:2.5rem;justify-content:center;position:relative;">
+              <div style="position:absolute;top:-24px;left:calc(50% - (400px/2));width:400px;height:1px;background:var(--taupe);"></div>
+              <div class="org-node">
+                <div style="width:1px;height:24px;background:var(--taupe);"></div>
+                <div class="org-node-box">
+                  <div class="org-node-name" data-editable>[Name]</div>
+                  <div class="org-node-title" data-editable>Head of Household</div>
+                </div>
+              </div>
+              <div class="org-node">
+                <div style="width:1px;height:24px;background:var(--taupe);"></div>
+                <div class="org-node-box">
+                  <div class="org-node-name" data-editable>[Name]</div>
+                  <div class="org-node-title" data-editable>Executive Chef</div>
+                </div>
+              </div>
+              <div class="org-node">
+                <div style="width:1px;height:24px;background:var(--taupe);"></div>
+                <div class="org-node-box">
+                  <div class="org-node-name" data-editable>[Name]</div>
+                  <div class="org-node-title" data-editable>Estate Manager</div>
+                </div>
+              </div>
+              <div class="org-node">
+                <div style="width:1px;height:24px;background:var(--taupe);"></div>
+                <div class="org-node-box">
+                  <div class="org-node-name" data-editable>[Name]</div>
+                  <div class="org-node-title" data-editable>Head of Security</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Staff Directory -->
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header">
+          <div class="card-title">Staff Directory</div>
+          <button class="btn btn-sm btn-primary" onclick="openModal('modal-new-staff')">+ Add Staff Member</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Position</th><th>Property</th><th>Start Date</th><th>Contact</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>[Name]</td><td data-editable>Head of Household</td><td data-editable>[Primary Residence]</td><td data-editable>[Date]</td><td data-editable>[Phone]</td><td><span class="tag tag-active tag-dot">Active</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Executive Chef</td><td data-editable>All Properties</td><td data-editable>Pending</td><td data-editable>—</td><td><span class="tag tag-pending tag-dot">Offer Pending</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Head Butler</td><td data-editable>[Primary Residence]</td><td data-editable>[Date]</td><td data-editable>[Phone]</td><td><span class="tag tag-active tag-dot">Active</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Private Driver</td><td data-editable>[Primary Residence]</td><td data-editable>[Date]</td><td data-editable>[Phone]</td><td><span class="tag tag-active tag-dot">Active</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Head Housekeeper</td><td data-editable>[Primary Residence]</td><td data-editable>[Date]</td><td data-editable>[Phone]</td><td><span class="tag tag-active tag-dot">Active</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Sous Chef</td><td data-editable>[Primary Residence]</td><td data-editable>[Date]</td><td data-editable>[Phone]</td><td><span class="tag tag-active tag-dot">Active</span></td></tr>
+            <tr><td data-editable>[Name]</td><td data-editable>Groundskeeper</td><td data-editable>[Primary Residence]</td><td data-editable>[Date]</td><td data-editable>[Phone]</td><td><span class="tag tag-active tag-dot">Active</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Hiring Pipeline -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">Hiring Pipeline</div></div>
+        <div class="grid-3">
+          <div>
+            <div class="section-label">Open Positions</div>
+            <div class="item-list">
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Executive Chef</div><div class="item-row-sub" data-editable>Final candidate · Awaiting approval</div></div><span class="tag tag-urgent tag-dot">Final Stage</span></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Personal Assistant</div><div class="item-row-sub" data-editable>3 candidates in review</div></div><span class="tag tag-pending tag-dot">Active Search</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">Time-Off Tracker</div>
+            <div class="item-list">
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>[Staff Name] — Annual Leave</div><div class="item-row-sub" data-editable>[Date Range] · 10 days</div></div><span class="tag tag-upcoming tag-dot">Upcoming</span></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>[Staff Name] — Personal Leave</div><div class="item-row-sub" data-editable>[Date Range] · 3 days</div></div><span class="tag tag-upcoming tag-dot">Upcoming</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label">Performance Reviews Due</div>
+            <div class="item-list">
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>[Staff Name]</div><div class="item-row-sub" data-editable>Annual review due [Date]</div></div><span class="tag tag-thisweek tag-dot">Due Soon</span></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>[Staff Name]</div><div class="item-row-sub" data-editable>Annual review due [Date]</div></div><span class="tag tag-upcoming tag-dot">Upcoming</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /section-staffing -->
+
+
+    <!-- ════════════════════════════════════════
+         06. SOP & KNOWLEDGE BASE
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-sop">
+      <div class="section-label">Operations</div>
+      <h1 class="page-title">SOP &amp; Knowledge Base</h1>
+      <p class="page-subtitle">Household manuals, protocols, and searchable operating procedures.</p>
+
+      <div class="grid-3" style="margin-bottom:1.5rem;">
+        <!-- SOP Category Cards -->
+        <div class="panel open">
+          <div class="panel-header" onclick="togglePanel(this)"><div class="panel-header-left"><span>⌂</span><div><div class="panel-header-title">Household Standards</div></div></div><span class="panel-toggle">▾</span></div>
+          <div class="panel-body">
+            <div class="item-list">
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Household Opening &amp; Closing Protocol</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Daily Household Checklist</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Wardrobe &amp; Laundry Standards</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Dining Service Standards</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel open">
+          <div class="panel-header" onclick="togglePanel(this)"><div class="panel-header-left"><span>◌</span><div><div class="panel-header-title">Travel &amp; Guest Protocols</div></div></div><span class="panel-toggle">▾</span></div>
+          <div class="panel-body">
+            <div class="item-list">
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Guest Arrival Procedure</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Travel Preparation Checklist</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Aircraft Departure Protocol</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Seasonal Rotation Checklist</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel open">
+          <div class="panel-header" onclick="togglePanel(this)"><div class="panel-header-left"><span>⚑</span><div><div class="panel-header-title">Security &amp; Emergency</div></div></div><span class="panel-toggle">▾</span></div>
+          <div class="panel-body">
+            <div class="item-list">
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Emergency Response Procedure</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Security Protocols &amp; Standards</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Fire &amp; Evacuation Plan</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+              <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Medical Emergency Response</div><div class="item-row-sub">Last updated [Date]</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full SOP Library -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Full SOP Library</div>
+          <button class="btn btn-sm btn-primary" onclick="openModal('modal-new-sop')">+ New SOP</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Title</th><th>Category</th><th>Version</th><th>Last Updated</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>Household Opening Protocol</td><td data-editable>Household</td><td>v2.3</td><td data-editable>[Date]</td><td data-editable>Director</td><td><span class="tag tag-active tag-dot">Current</span></td></tr>
+            <tr><td data-editable>Guest Arrival &amp; Departure</td><td data-editable>Guest Services</td><td>v1.8</td><td data-editable>[Date]</td><td data-editable>Head Butler</td><td><span class="tag tag-active tag-dot">Current</span></td></tr>
+            <tr><td data-editable>Wardrobe Management</td><td data-editable>Personal Services</td><td>v3.1</td><td data-editable>[Date]</td><td data-editable>Director</td><td><span class="tag tag-active tag-dot">Current</span></td></tr>
+            <tr><td data-editable>Travel Preparation</td><td data-editable>Travel</td><td>v2.0</td><td data-editable>[Date]</td><td data-editable>Director</td><td><span class="tag tag-pending tag-dot">Under Review</span></td></tr>
+            <tr><td data-editable>Security Standards</td><td data-editable>Security</td><td>v4.2</td><td data-editable>[Date]</td><td data-editable>Head of Security</td><td><span class="tag tag-active tag-dot">Current</span></td></tr>
+            <tr><td data-editable>Emergency Procedures</td><td data-editable>Emergency</td><td>v1.5</td><td data-editable>[Date]</td><td data-editable>Director</td><td><span class="tag tag-active tag-dot">Current</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /section-sop -->
+
+
+    <!-- ════════════════════════════════════════
+         07. PROJECTS & CONSTRUCTION
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-projects">
+      <div class="section-label">Operations</div>
+      <h1 class="page-title">Projects &amp; Construction</h1>
+      <p class="page-subtitle">Active renovations, contractors, budgets, and approval points.</p>
+
+      <div class="grid-2" style="margin-bottom:1.5rem;">
+        <div class="card">
+          <div class="card-header"><div><div class="card-title" data-editable>Pool House Renovation</div><div class="card-meta" data-editable>Est. Completion: [Date] · [Contractor Name]</div></div><span class="tag tag-active tag-dot">Active</span></div>
+          <div class="progress-bar-wrap" style="margin:.75rem 0 .375rem;"><div class="progress-bar ok" style="width:68%"></div></div>
+          <div style="font-size:.75rem;color:var(--stone);margin-bottom:1rem;">68% complete</div>
+          <table class="data-table" style="font-size:.8rem;">
+            <tr><td style="color:var(--stone);padding:.4rem 0;">Budget</td><td data-editable>$[X] of $[Y] used</td></tr>
+            <tr><td style="color:var(--stone);padding:.4rem 0;">Architect</td><td data-editable>[Architect Name]</td></tr>
+            <tr><td style="color:var(--stone);padding:.4rem 0;">Next Milestone</td><td data-editable>[Milestone] · [Date]</td></tr>
+            <tr><td style="color:var(--stone);padding:.4rem 0;">Open Issues</td><td data-editable>1 — [Brief Description]</td></tr>
+          </table>
+          <div style="margin-top:1rem;display:flex;gap:.5rem;">
+            <button class="btn btn-sm">View Photos</button>
+            <button class="btn btn-sm">Decision Log</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div><div class="card-title" data-editable>Smart Home Integration</div><div class="card-meta" data-editable>Est. Completion: [Date] · [Contractor Name]</div></div><span class="tag tag-active tag-dot">Active</span></div>
+          <div class="progress-bar-wrap" style="margin:.75rem 0 .375rem;"><div class="progress-bar warn" style="width:40%"></div></div>
+          <div style="font-size:.75rem;color:var(--stone);margin-bottom:1rem;">40% complete · slight delay flagged</div>
+          <table class="data-table" style="font-size:.8rem;">
+            <tr><td style="color:var(--stone);padding:.4rem 0;">Budget</td><td data-editable>$[X] of $[Y] used</td></tr>
+            <tr><td style="color:var(--stone);padding:.4rem 0;">Systems</td><td data-editable>Lighting, Audio, HVAC, Security, Shades</td></tr>
+            <tr><td style="color:var(--stone);padding:.4rem 0;">Next Milestone</td><td data-editable>[Milestone] · [Date]</td></tr>
+            <tr><td style="color:var(--stone);padding:.4rem 0;">Open Issues</td><td data-editable>2 — [Brief Description]</td></tr>
+          </table>
+          <div style="margin-top:1rem;display:flex;gap:.5rem;">
+            <button class="btn btn-sm">View Photos</button>
+            <button class="btn btn-sm">Change Orders</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Project Issues Log</div></div>
+        <table class="data-table">
+          <thead><tr><th>Issue</th><th>Project</th><th>Raised By</th><th>Date</th><th>Action Required</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>Tile delivery delay</td><td data-editable>Pool House</td><td data-editable>[Contractor]</td><td data-editable>[Date]</td><td data-editable>Source alternative supplier</td><td><span class="tag tag-urgent tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Open</span></td></tr>
+            <tr><td data-editable>Wiring spec change</td><td data-editable>Smart Home</td><td data-editable>[Contractor]</td><td data-editable>[Date]</td><td data-editable>Principal approval needed</td><td><span class="tag tag-pending tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Pending Approval</span></td></tr>
+            <tr><td data-editable>Budget overrun — millwork</td><td data-editable>Pool House</td><td data-editable>Director</td><td data-editable>[Date]</td><td data-editable>Approve change order</td><td><span class="tag tag-pending tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Pending Approval</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /section-projects -->
+
+
+    <!-- ════════════════════════════════════════
+         08. TRAVEL & LIFESTYLE
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-travel">
+      <div class="section-label">Lifestyle</div>
+      <h1 class="page-title">Travel &amp; Lifestyle</h1>
+      <p class="page-subtitle">Itineraries, aircraft, hotels, memberships, and travel logistics.</p>
+
+      <div class="grid-3" style="margin-bottom:1.5rem;">
+        <div class="stat-tile"><div class="stat-tile-label">Next Departure</div><div class="stat-tile-value" style="font-size:1.375rem;" data-editable>[Date]</div><div class="stat-tile-note" data-editable>[Destination] · Party of [N]</div></div>
+        <div class="stat-tile"><div class="stat-tile-label">Active Memberships</div><div class="stat-tile-value">12</div><div class="stat-tile-note">All current</div></div>
+        <div class="stat-tile"><div class="stat-tile-label">Upcoming Trips</div><div class="stat-tile-value">3</div><div class="stat-tile-note" data-editable>Next 90 days</div></div>
+      </div>
+
+      <!-- Upcoming Itineraries -->
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header">
+          <div class="card-title">Active Itinerary — Aspen February</div>
+          <div style="display:flex;gap:.5rem;">
+            <span class="tag tag-pending tag-dot">Pending Approval</span>
+            <button class="btn btn-sm">Edit</button>
+            <button class="btn btn-sm btn-primary">⎙ Print</button>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Date</th><th>Time</th><th>Activity / Logistics</th><th>Location</th><th>Contact</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>Feb 14</td><td data-editable>9:00 AM</td><td data-editable>Depart — G650</td><td data-editable>[Departure Airport]</td><td data-editable>[Pilot Name]</td><td data-editable>Driver departs 7:30 AM</td></tr>
+            <tr><td data-editable>Feb 14</td><td data-editable>11:30 AM</td><td data-editable>Arrive Aspen · Transfer to Villa</td><td data-editable>ASE Airport</td><td data-editable>[Driver Name]</td><td data-editable>Luggage to villa directly</td></tr>
+            <tr><td data-editable>Feb 14</td><td data-editable>1:00 PM</td><td data-editable>Lunch at [Restaurant]</td><td data-editable>Aspen</td><td data-editable>Reservation [#]</td><td data-editable>Private table confirmed</td></tr>
+            <tr><td data-editable>Feb 15</td><td data-editable>8:30 AM</td><td data-editable>Ski — Ajax Mountain</td><td data-editable>Aspen Mountain</td><td data-editable>[Guide Name]</td><td data-editable>Equipment ready at 8 AM</td></tr>
+            <tr><td data-editable>Feb 15</td><td data-editable>7:00 PM</td><td data-editable>Dinner — [Restaurant]</td><td data-editable>Aspen</td><td data-editable>Reservation [#]</td><td data-editable>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Aircraft & Travel Assets -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Aircraft</div></div>
+          <table class="data-table">
+            <tr><td style="color:var(--stone);">Aircraft</td><td data-editable>Gulfstream G650</td></tr>
+            <tr><td style="color:var(--stone);">Registration</td><td data-editable>[N-Number]</td></tr>
+            <tr><td style="color:var(--stone);">Base</td><td data-editable>[Home Airport]</td></tr>
+            <tr><td style="color:var(--stone);">Lead Pilot</td><td data-editable>[Name] · [Phone]</td></tr>
+            <tr><td style="color:var(--stone);">Charter Backup</td><td data-editable>[Charter Company] · [Phone]</td></tr>
+            <tr><td style="color:var(--stone);">Catering Vendor</td><td data-editable>[Vendor Name]</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Travel Documents</div></div>
+          <table class="data-table">
+            <tr><td style="color:var(--stone);">Passport — Principal</td><td data-editable>Expires [Date] · [Country]</td></tr>
+            <tr><td style="color:var(--stone);">Passport — Family Member</td><td data-editable>Expires [Date]</td></tr>
+            <tr><td style="color:var(--stone);">Global Entry</td><td data-editable>Expires [Date]</td></tr>
+            <tr><td style="color:var(--stone);">Visas on File</td><td data-editable>[Country list]</td></tr>
+            <tr><td style="color:var(--stone);">Emergency Contacts</td><td data-editable>See secure file</td></tr>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /section-travel -->
+
+
+    <!-- ════════════════════════════════════════
+         09. EVENTS & ENTERTAINING
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-events">
+      <div class="section-label">Lifestyle</div>
+      <h1 class="page-title">Events &amp; Entertaining</h1>
+      <p class="page-subtitle">Event calendar, guest lists, menus, vendors, and run-of-show.</p>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header">
+          <div class="card-title">Upcoming Events</div>
+          <button class="btn btn-sm btn-primary" onclick="openModal('modal-new-event')">+ New Event</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Event</th><th>Date</th><th>Venue</th><th>Guests</th><th>Lead</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>Private Dinner — [Guest Name]</td><td data-editable>[Date]</td><td data-editable>Main Residence</td><td data-editable>20</td><td data-editable>Director</td><td><span class="tag tag-active tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Planning</span></td></tr>
+            <tr><td data-editable>Holiday Reception</td><td data-editable>[Date]</td><td data-editable>Ballroom</td><td data-editable>60</td><td data-editable>Director</td><td><span class="tag tag-upcoming tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Early Planning</span></td></tr>
+            <tr><td data-editable>Family Gathering — [Occasion]</td><td data-editable>[Date]</td><td data-editable>Outdoor Terrace</td><td data-editable>15</td><td data-editable>Director</td><td><span class="tag tag-upcoming tag-dot" onclick="cycleStatus(this)" style="cursor:pointer;">Upcoming</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Event Detail Panel -->
+      <div class="panel open">
+        <div class="panel-header" onclick="togglePanel(this)"><div class="panel-header-left"><span>◉</span><div><div class="panel-header-title">Private Dinner — [Guest Name] · [Date]</div><div class="panel-header-sub">20 guests · Main Residence</div></div></div><span class="panel-toggle">▾</span></div>
+        <div class="panel-body">
+          <div class="grid-2">
+            <div>
+              <div class="form-section-title">Event Details</div>
+              <div class="form-group"><div class="form-label">Event Type</div><div style="font-size:.875rem;" data-editable>Seated dinner · Private</div></div>
+              <div class="form-group"><div class="form-label">Menu</div><div style="font-size:.875rem;" data-editable>6-course · Chef [Name] · Paired wines · [Theme or notes]</div></div>
+              <div class="form-group"><div class="form-label">Floral / Décor</div><div style="font-size:.875rem;" data-editable>[Florist Name] · Budget $[X] · [Theme]</div></div>
+              <div class="form-group"><div class="form-label">Rental Items</div><div style="font-size:.875rem;" data-editable>China, linens, glassware from household inventory. No rentals required.</div></div>
+            </div>
+            <div>
+              <div class="form-section-title">Staffing Plan</div>
+              <div class="item-list">
+                <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Head Butler — Service lead</div></div><span class="tag tag-active tag-dot">Confirmed</span></div>
+                <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Executive Chef — Menu execution</div></div><span class="tag tag-active tag-dot">Confirmed</span></div>
+                <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>[N] Wait staff — [Vendor Name]</div></div><span class="tag tag-pending tag-dot">Pending</span></div>
+                <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>Valet — [Vendor Name]</div></div><span class="tag tag-upcoming tag-dot">To Confirm</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-section-title">Run of Show</div>
+          <table class="data-table">
+            <thead><tr><th>Time</th><th>Activity</th><th>Lead</th></tr></thead>
+            <tbody>
+              <tr><td data-editable>5:00 PM</td><td data-editable>Staff briefing</td><td data-editable>Director</td></tr>
+              <tr><td data-editable>5:30 PM</td><td data-editable>Table set complete · Final inspection</td><td data-editable>Head Butler</td></tr>
+              <tr><td data-editable>6:30 PM</td><td data-editable>Guest arrival begins</td><td data-editable>Head Butler</td></tr>
+              <tr><td data-editable>7:00 PM</td><td data-editable>Dinner service begins</td><td data-editable>Executive Chef</td></tr>
+              <tr><td data-editable>10:30 PM</td><td data-editable>Evening concludes · Valet retrieval</td><td data-editable>Head Butler</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /section-events -->
+
+
+    <!-- ════════════════════════════════════════
+         10. FAMILY OFFICE COORDINATION
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-family-office">
+      <div class="section-label">Administration</div>
+      <h1 class="page-title">Family Office Coordination</h1>
+      <p class="page-subtitle">Advisors, legal, tax, insurance, and institutional contacts.</p>
+
+      <div class="grid-2" style="margin-bottom:1.5rem;">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Key Advisors</div></div>
+          <table class="data-table">
+            <thead><tr><th>Advisor</th><th>Firm</th><th>Role</th><th>Contact</th></tr></thead>
+            <tbody>
+              <tr><td data-editable>[Name]</td><td data-editable>[Firm]</td><td data-editable>Private Wealth Advisor</td><td data-editable>[Phone / Email]</td></tr>
+              <tr><td data-editable>[Name]</td><td data-editable>[Firm]</td><td data-editable>Personal Attorney</td><td data-editable>[Phone / Email]</td></tr>
+              <tr><td data-editable>[Name]</td><td data-editable>[Firm]</td><td data-editable>Tax Counsel</td><td data-editable>[Phone / Email]</td></tr>
+              <tr><td data-editable>[Name]</td><td data-editable>[Firm]</td><td data-editable>Trust &amp; Estate Attorney</td><td data-editable>[Phone / Email]</td></tr>
+              <tr><td data-editable>[Name]</td><td data-editable>[Firm]</td><td data-editable>Insurance Broker</td><td data-editable>[Phone / Email]</td></tr>
+              <tr><td data-editable>[Name]</td><td data-editable>[Firm]</td><td data-editable>Private Banker</td><td data-editable>[Phone / Email]</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Reporting Schedule</div></div>
+          <div class="item-list">
+            <div class="item-row"><div class="item-row-icon">◫</div><div class="item-row-body"><div class="item-row-title" data-editable>Weekly Household Brief</div><div class="item-row-sub" data-editable>Every Monday · Director → Principal</div></div><span class="tag tag-active tag-dot">Active</span></div>
+            <div class="item-row"><div class="item-row-icon">◫</div><div class="item-row-body"><div class="item-row-title" data-editable>Monthly Estate Report</div><div class="item-row-sub" data-editable>1st of month · Director → Principal + Family Office</div></div><span class="tag tag-active tag-dot">Active</span></div>
+            <div class="item-row"><div class="item-row-icon">◫</div><div class="item-row-body"><div class="item-row-title" data-editable>Quarterly Tax Meeting</div><div class="item-row-sub" data-editable>Next: [Date] · Director + CPA</div></div><span class="tag tag-upcoming tag-dot">Upcoming</span></div>
+            <div class="item-row"><div class="item-row-icon">◫</div><div class="item-row-body"><div class="item-row-title" data-editable>Annual Insurance Review</div><div class="item-row-sub" data-editable>Next: [Date]</div></div><span class="tag tag-upcoming tag-dot">Upcoming</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /section-family-office -->
+
+
+    <!-- ════════════════════════════════════════
+         11. DOCUMENTS VAULT
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-documents">
+      <div class="section-label">Administration</div>
+      <h1 class="page-title">Documents Vault</h1>
+      <p class="page-subtitle">Contracts, manuals, insurance, property records, and staff files. Confidential.</p>
+
+      <div class="grid-4" style="margin-bottom:1.5rem;">
+        <div class="stat-tile" onclick="showSection('section-sop','SOPs','Operations')"><div class="stat-tile-label">SOPs &amp; Manuals</div><div class="stat-tile-value">24</div><div class="stat-tile-note">All current</div></div>
+        <div class="stat-tile"><div class="stat-tile-label">Active Contracts</div><div class="stat-tile-value">18</div><div class="stat-tile-note">2 expiring soon</div></div>
+        <div class="stat-tile"><div class="stat-tile-label">Staff Files</div><div class="stat-tile-value">12</div><div class="stat-tile-note">All complete</div></div>
+        <div class="stat-tile"><div class="stat-tile-label">Property Records</div><div class="stat-tile-value">4</div><div class="stat-tile-note">All properties</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Document Library</div>
+          <div style="display:flex;gap:.5rem;">
+            <button class="btn btn-sm">Filter</button>
+            <button class="btn btn-sm btn-primary">+ Upload</button>
+          </div>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Document</th><th>Category</th><th>Property / Entity</th><th>Date</th><th>Expires</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>Property Insurance Policy</td><td data-editable>Insurance</td><td data-editable>[Primary Residence]</td><td data-editable>[Date]</td><td data-editable>[Expiry]</td><td><span class="tag tag-active tag-dot">Current</span></td></tr>
+            <tr><td data-editable>Service Contract — [Vendor]</td><td data-editable>Vendor Contract</td><td data-editable>All Properties</td><td data-editable>[Date]</td><td data-editable>[Expiry]</td><td><span class="tag tag-urgent tag-dot">Expiring Soon</span></td></tr>
+            <tr><td data-editable>Confidentiality Agreement — [Staff]</td><td data-editable>Staff File</td><td data-editable>[Primary Residence]</td><td data-editable>[Date]</td><td data-editable>—</td><td><span class="tag tag-active tag-dot">On File</span></td></tr>
+            <tr><td data-editable>Title Deed — [Property]</td><td data-editable>Property Record</td><td data-editable>[Property]</td><td data-editable>[Date]</td><td data-editable>—</td><td><span class="tag tag-active tag-dot">On File</span></td></tr>
+            <tr><td data-editable>Aircraft Insurance</td><td data-editable>Insurance</td><td data-editable>G650 [N-Number]</td><td data-editable>[Date]</td><td data-editable>[Expiry]</td><td><span class="tag tag-active tag-dot">Current</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /section-documents -->
+
+
+    <!-- ════════════════════════════════════════
+         12. REPORTS & SCORECARDS
+         ════════════════════════════════════════ -->
+    <div class="section-page" id="section-reports">
+      <div class="section-label">Administration</div>
+      <h1 class="page-title">Reports &amp; Scorecards</h1>
+      <p class="page-subtitle">Weekly briefs, monthly estate reports, and performance scorecards.</p>
+
+      <div class="grid-2" style="margin-bottom:1.5rem;">
+
+        <!-- Weekly Executive Summary -->
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Weekly Executive Summary</div><div class="card-meta" data-editable>Week of [Date] — Prepared by Director</div></div>
+            <button class="btn btn-sm btn-primary" onclick="window.print()">⎙ Print</button>
+          </div>
+          <div class="panel open" style="border:none;box-shadow:none;">
+            <div class="panel-header" onclick="togglePanel(this)" style="padding:.75rem 0;"><div class="panel-header-left"><div><div class="panel-header-title">This Week's Highlights</div></div></div><span class="panel-toggle">▾</span></div>
+            <div class="panel-body" style="padding:0 0 1rem;">
+              <ul style="font-size:.875rem;line-height:2;color:var(--charcoal);padding-left:1.25rem;" data-editable>
+                <li>[Highlight 1 — brief sentence]</li>
+                <li>[Highlight 2 — brief sentence]</li>
+                <li>[Highlight 3 — brief sentence]</li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel" style="border:none;box-shadow:none;">
+            <div class="panel-header" onclick="togglePanel(this)" style="padding:.75rem 0;"><div class="panel-header-left"><div><div class="panel-header-title">Open Issues</div></div></div><span class="panel-toggle">▾</span></div>
+            <div class="panel-body" style="padding:0 0 1rem;">
+              <div class="item-list">
+                <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>[Issue description]</div></div><span class="tag tag-urgent tag-dot">Open</span></div>
+                <div class="item-row"><div class="item-row-body"><div class="item-row-title" data-editable>[Issue description]</div></div><span class="tag tag-pending tag-dot">In Progress</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vendor Performance -->
+        <div class="card">
+          <div class="card-header"><div class="card-title">Vendor Performance</div></div>
+          <div>
+            <div class="scorecard-row"><span class="scorecard-label" data-editable>[Vendor — Household Services]</span><div class="scorecard-bar"><div class="progress-bar-wrap"><div class="progress-bar ok" style="width:95%"></div></div></div><span class="scorecard-value" style="color:var(--success)">95</span></div>
+            <div class="scorecard-row"><span class="scorecard-label" data-editable>[Vendor — Grounds]</span><div class="scorecard-bar"><div class="progress-bar-wrap"><div class="progress-bar ok" style="width:90%"></div></div></div><span class="scorecard-value" style="color:var(--success)">90</span></div>
+            <div class="scorecard-row"><span class="scorecard-label" data-editable>[Vendor — Catering]</span><div class="scorecard-bar"><div class="progress-bar-wrap"><div class="progress-bar ok" style="width:88%"></div></div></div><span class="scorecard-value" style="color:var(--success)">88</span></div>
+            <div class="scorecard-row"><span class="scorecard-label" data-editable>[Vendor — Security]</span><div class="scorecard-bar"><div class="progress-bar-wrap"><div class="progress-bar warn" style="width:74%"></div></div></div><span class="scorecard-value" style="color:var(--warn)">74</span></div>
+            <div class="scorecard-row"><span class="scorecard-label" data-editable>[Vendor — Maintenance]</span><div class="scorecard-bar"><div class="progress-bar-wrap"><div class="progress-bar ok" style="width:92%"></div></div></div><span class="scorecard-value" style="color:var(--success)">92</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Budget Variance -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">Budget Variance Report</div><div class="card-meta" data-editable>Q[N] [Year]</div></div>
+        <table class="data-table">
+          <thead><tr><th>Category</th><th>Budget</th><th>Actual</th><th>Variance</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td data-editable>Household Operations</td><td data-editable>$[X]</td><td data-editable>$[Y]</td><td><span class="tag tag-active">Under $[Z]</span></td><td data-editable>On track</td></tr>
+            <tr><td data-editable>Travel &amp; Lifestyle</td><td data-editable>$[X]</td><td data-editable>$[Y]</td><td><span class="tag tag-warn">Over $[Z]</span></td><td data-editable>Aspen charter added</td></tr>
+            <tr><td data-editable>Staffing</td><td data-editable>$[X]</td><td data-editable>$[Y]</td><td><span class="tag tag-active">On budget</span></td><td data-editable>Chef hire pending</td></tr>
+            <tr><td data-editable>Projects</td><td data-editable>$[X]</td><td data-editable>$[Y]</td><td><span class="tag tag-active">Under $[Z]</span></td><td data-editable>Pool house on schedule</td></tr>
+            <tr><td data-editable>Events &amp; Entertaining</td><td data-editable>$[X]</td><td data-editable>$[Y]</td><td><span class="tag tag-active">On budget</span></td><td data-editable></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /section-reports -->
+
+    </main><!-- /page-content -->
+  </div><!-- /main-area -->
+</div><!-- /app-shell -->
+
+
+<!-- ════════════════════════════════════════
+     MODALS
+     ════════════════════════════════════════ -->
+
+<!-- New Task Modal -->
+<div class="modal-overlay" id="modal-new-task">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add New Task</div>
+      <button class="modal-close" onclick="closeModal('modal-new-task')">×</button>
+    </div>
+    <div class="form-group"><label class="form-label">Task Title</label><input type="text" class="form-input" placeholder="e.g., Confirm Aspen catering vendor" /></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Priority</label><select class="form-select"><option>Urgent</option><option>This Week</option><option>Upcoming</option><option>Someday</option></select></div>
+      <div class="form-group"><label class="form-label">Due Date</label><input type="date" class="form-input" /></div>
+    </div>
+    <div class="form-group"><label class="form-label">Category</label><select class="form-select"><option>Estate Operations</option><option>Travel</option><option>Events</option><option>Staffing</option><option>Vendor</option><option>Principal</option></select></div>
+    <div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" placeholder="Additional context…"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('modal-new-task')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Task added');closeModal('modal-new-task')">Add Task</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Request Modal -->
+<div class="modal-overlay" id="modal-new-request">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">New Principal Request</div>
+      <button class="modal-close" onclick="closeModal('modal-new-request')">×</button>
+    </div>
+    <div class="form-group"><label class="form-label">Request Summary</label><input type="text" class="form-input" placeholder="Brief description of request" /></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Priority</label><select class="form-select"><option>Urgent</option><option>This Week</option><option>Upcoming</option></select></div>
+      <div class="form-group"><label class="form-label">Requested By</label><input type="text" class="form-input" placeholder="Principal / Family Member" /></div>
+    </div>
+    <div class="form-group"><label class="form-label">Details</label><textarea class="form-textarea" placeholder="Full details, preferences, specifications…"></textarea></div>
+    <div class="form-group"><label class="form-label">Budget (if applicable)</label><input type="text" class="form-input" placeholder="$0" /></div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('modal-new-request')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Request logged');closeModal('modal-new-request')">Log Request</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Staff Modal -->
+<div class="modal-overlay" id="modal-new-staff">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add Staff Member</div>
+      <button class="modal-close" onclick="closeModal('modal-new-staff')">×</button>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" /></div>
+      <div class="form-group"><label class="form-label">Position</label><input type="text" class="form-input" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Property Assignment</label><select class="form-select"><option>[Primary Residence]</option><option>All Properties</option><option>[Aspen Residence]</option><option>[Beach House]</option></select></div>
+      <div class="form-group"><label class="form-label">Start Date</label><input type="date" class="form-input" /></div>
+    </div>
+    <div class="form-group"><label class="form-label">Contact Phone</label><input type="tel" class="form-input" /></div>
+    <div class="form-group"><label class="form-label">Notes / Special Conditions</label><textarea class="form-textarea" style="min-height:60px;"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('modal-new-staff')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Staff member added');closeModal('modal-new-staff')">Add to Directory</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Contact Modal -->
+<div class="modal-overlay" id="modal-new-contact">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add VIP Contact</div>
+      <button class="modal-close" onclick="closeModal('modal-new-contact')">×</button>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Name</label><input type="text" class="form-input" /></div>
+      <div class="form-group"><label class="form-label">Role / Title</label><input type="text" class="form-input" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" /></div>
+      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" /></div>
+    </div>
+    <div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" style="min-height:60px;"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('modal-new-contact')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Contact added');closeModal('modal-new-contact')">Add Contact</button>
+    </div>
+  </div>
+</div>
+
+<!-- New SOP Modal -->
+<div class="modal-overlay" id="modal-new-sop">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Create New SOP</div>
+      <button class="modal-close" onclick="closeModal('modal-new-sop')">×</button>
+    </div>
+    <div class="form-group"><label class="form-label">SOP Title</label><input type="text" class="form-input" placeholder="e.g., Guest Arrival Protocol" /></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Category</label><select class="form-select"><option>Household</option><option>Guest Services</option><option>Travel</option><option>Security</option><option>Emergency</option><option>Personal Services</option><option>Events</option></select></div>
+      <div class="form-group"><label class="form-label">Owner</label><input type="text" class="form-input" placeholder="Director" /></div>
+    </div>
+    <div class="form-group"><label class="form-label">Procedure</label><textarea class="form-textarea" style="min-height:120px;" placeholder="Describe the procedure step by step…"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('modal-new-sop')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('SOP created');closeModal('modal-new-sop')">Save SOP</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Event Modal -->
+<div class="modal-overlay" id="modal-new-event">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Create New Event</div>
+      <button class="modal-close" onclick="closeModal('modal-new-event')">×</button>
+    </div>
+    <div class="form-group"><label class="form-label">Event Name</label><input type="text" class="form-input" /></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Date</label><input type="date" class="form-input" /></div>
+      <div class="form-group"><label class="form-label">Guest Count</label><input type="number" class="form-input" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Venue</label><input type="text" class="form-input" /></div>
+      <div class="form-group"><label class="form-label">Event Lead</label><input type="text" class="form-input" value="Director" /></div>
+    </div>
+    <div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" style="min-height:60px;"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('modal-new-event')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Event created');closeModal('modal-new-event')">Create Event</button>
+    </div>
+  </div>
+</div>
+
+<!-- Property Detail Modal -->
+<div class="modal-overlay" id="modal-property-detail">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" data-editable>[Property Name]</div>
+      <button class="modal-close" onclick="closeModal('modal-property-detail')">×</button>
+    </div>
+    <table class="data-table" style="margin-bottom:1rem;">
+      <tr><td style="color:var(--stone);width:40%">Address</td><td data-editable>[Full Address]</td></tr>
+      <tr><td style="color:var(--stone);">Size</td><td data-editable>[Sq Ft] sq ft · [N] bed / [N] bath</td></tr>
+      <tr><td style="color:var(--stone);">Staff On-site</td><td data-editable>[N] full-time, [N] part-time</td></tr>
+      <tr><td style="color:var(--stone);">Alarm Code</td><td data-editable>See secure file</td></tr>
+      <tr><td style="color:var(--stone);">Emergency Contact</td><td data-editable>[Local Contact Name] · [Phone]</td></tr>
+      <tr><td style="color:var(--stone);">Utility Contacts</td><td data-editable>[Electric / Gas / Water contacts]</td></tr>
+    </table>
+    <div class="form-group"><label class="form-label">Property Notes</label><textarea class="form-textarea" data-editable placeholder="Special instructions, quirks, seasonal notes…"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('modal-property-detail')">Close</button>
+      <button class="btn btn-primary" onclick="showToast('Saved');closeModal('modal-property-detail')">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/app.js"></script>
+</body>
+</html>
