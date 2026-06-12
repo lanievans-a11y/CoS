@@ -1,4 +1,4 @@
-# Director of Personal Services — Operations Platform
+# Private & Confidential — Operations Platform
 
 ## Overview
 A luxury UHNW household operating system. Clean HTML/CSS/JS — no backend, no framework, no login required.
